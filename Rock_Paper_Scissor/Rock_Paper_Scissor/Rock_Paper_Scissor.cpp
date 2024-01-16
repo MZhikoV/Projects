@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void printDuel(int winner, int looser, bool isEqual);
+void printDuel(int winner, int looser, bool isEqual=false);
 int compareDraw(int hum, int pc);
 void enterCommand(string& a, int& round, int& wins, int& losses, bool& isDone);
 
@@ -32,9 +32,6 @@ int main()
     int gameNum = 1;
     string inp;
 
-    /*do {
-        cout << "Please enter correct input:" << endl;
-    }*/
     while (inp != "end") {
         int wins = 0, losses = 0, round = 1;
         cout << endl << endl << endl;
@@ -45,8 +42,6 @@ int main()
         }
         gameNum++;
     }
-
-
     return 0;
 }
 
@@ -73,8 +68,6 @@ void enterCommand(string& a, int& round, int& wins, int& losses, bool& isDone) {
         }
 
     } while (inp != 'r' && inp != 's' && inp != 'p' && inp != '0' && inp != '1' && inp != '2' && inp != '3' && inp!='e');
-
-   
 
     int human = 0;
 
@@ -125,17 +118,16 @@ void enterCommand(string& a, int& round, int& wins, int& losses, bool& isDone) {
         }
 
         if (wins == 3) {
-            cout << endl << endl << "-- Game over! Player wins " << wins << " : " << losses << " ! --" << endl << endl;
+            cout << endl << endl << "-- Game over! Player wins " << wins << " : " << losses << "! --" << endl << endl;
             isDone = true;
         }
         else if (losses == 3) {
-            cout << endl << endl << "-- Game over! Computer wins " << wins << " : " << losses << " ! --" << endl << endl;
+            cout << endl << endl << "-- Game over! Computer wins " << wins << " : " << losses << "! --" << endl << endl;
             isDone = true;
         }
     }
 
 }
-
 
 int compareDraw(int hum, int pc) {
     if (hum == pc) {
@@ -144,31 +136,31 @@ int compareDraw(int hum, int pc) {
     }
     else if (hum == 1) {
         if (pc == 2) {
-            printDuel(pc, hum, false);
+            printDuel(pc, hum);
             return 2;
         }
         else {
-            printDuel(hum, pc, false);
+            printDuel(hum, pc);
             return 1;
         }
     }
     else if (hum == 2) {
         if (pc == 1) {
-            printDuel(hum, pc, false);
+            printDuel(hum, pc);
             return 1;
         }
         else {
-            printDuel(pc, hum, false);
+            printDuel(pc, hum);
             return 2;
         }
     }
     else if (hum == 3) {
         if (pc == 1) {
-            printDuel(hum, pc, false);
+            printDuel(hum, pc);
             return 1;
         }
         else {
-            printDuel(pc, hum, false);
+            printDuel(pc, hum);
             return 2;
         }
     }
