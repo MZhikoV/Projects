@@ -26,11 +26,35 @@ void printSeparators (std::string input, bool separator) {
     // };
 }
 
+// void printVector (std::vector<char> inp) {
+//     std::cout<<'|';
+//     for (auto el:inp) {
+//         std::cout<<el;
+//     }
+//     std::cout<<'|'<<std::endl;
+// }
+
 void printVector (std::vector<char> inp) {
+    for (auto el:inp) {
+        std::cout<<el;
+    };
+    std::cout<<std::endl;
+
+};
+
+void printVectorCA (std::vector<char> inp) {
     std::cout<<'|';
+    int vectorStartPoint=((MAXAPPWIDTH-2)-inp.size())/2;
+    for (int i=0;i<vectorStartPoint;i++) {
+        std::cout<<' ';
+    }
     for (auto el:inp) {
         std::cout<<el;
     }
+    int vectorEndPoint=vectorStartPoint+inp.size();
+    for (int i=vectorEndPoint;i<MAXAPPWIDTH-1;i++) {
+        std::cout<<' ';
+    };
     std::cout<<'|'<<std::endl;
 }
 
@@ -48,16 +72,27 @@ int main() {
 
     int startStruct=(MAXVECLEN-MAXHANGWIDTH)/2; //defining the start of the input text so it can be center aligned
 
+    // //create the title
+    // std::vector<char> title(MAXVECLEN);
+    // std::string titleName="HANGMAN"; 
+    // int titleCenter=startStruct;
+    // for (int i=0; i<titleName.length(); i++) {
+    //     title[titleCenter]=titleName[i];
+    //     titleCenter++;
+    // }
+    // printVector(title); //test call of the title;
+
     //create the title
-    std::vector<char> title(MAXVECLEN);
+    std::vector<char> title(MAXAPPWIDTH);
     std::string titleName="HANGMAN"; 
-    int titleCenter=startStruct;
+    int titleStartPoint=((MAXAPPWIDTH-2)-titleName.length())/2;
     for (int i=0; i<titleName.length(); i++) {
-        title[titleCenter]=titleName[i];
-        titleCenter++;
+        title.front()='|';
+        title.back()='|';
+        title[titleStartPoint]=titleName[i];
+        titleStartPoint++;
     }
     printVector(title); //test call of the title;
-
 
     //create hang structure
 
@@ -146,15 +181,15 @@ int main() {
     printVector(line7);
 
     
-    //create the alphabet in 2 rows
-    std::vector<char> lineAlpha(MAXVECLEN);
+    //create the alphabet in 1 row
+    std::vector<char> lineAlpha;
     int startAlphabet=65;
     for (int i=0; i<26;i++) {
-        lineAlpha[startStruct+i]=startAlphabet;
+        lineAlpha.push_back(startAlphabet);
         startAlphabet++;
     };
 
-    printVector(lineAlpha);
+    printVectorCA(lineAlpha);
 
 
 
